@@ -42,6 +42,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.swordfish.lemuroid.R
+import com.swordfish.lemuroid.app.mobile.feature.gamemenu.cheats.GameMenuCheatsScreen
 import com.swordfish.lemuroid.app.mobile.feature.gamemenu.coreoptions.GameMenuCoreOptionsScreen
 import com.swordfish.lemuroid.app.mobile.feature.gamemenu.coreoptions.GameMenuCoreOptionsViewModel
 import com.swordfish.lemuroid.app.mobile.feature.gamemenu.states.GameMenuStatesScreen
@@ -78,6 +79,7 @@ class GameMenuActivity : RetrogradeComponentActivity() {
         val audioEnabled: Boolean,
         val fastForwardSupported: Boolean,
         val fastForwardEnabled: Boolean,
+        val gameSpeed: Int,
         val numDisks: Int,
         val currentDisk: Int,
         val currentTiltConfiguration: TiltConfiguration,
@@ -116,6 +118,8 @@ class GameMenuActivity : RetrogradeComponentActivity() {
                     extras?.getBoolean(GameMenuContract.EXTRA_FAST_FORWARD_SUPPORTED, false) ?: false,
                 fastForwardEnabled =
                     extras?.getBoolean(GameMenuContract.EXTRA_FAST_FORWARD, false) ?: false,
+                gameSpeed =
+                    extras?.getInt(GameMenuContract.EXTRA_GAME_SPEED, 1) ?: 1,
                 numDisks =
                     extras?.getInt(GameMenuContract.EXTRA_DISKS, 0) ?: 0,
                 currentDisk =
@@ -217,6 +221,9 @@ class GameMenuActivity : RetrogradeComponentActivity() {
                                 onResult { putExtra(GameMenuContract.RESULT_LOAD, it) }
                             },
                         )
+                    }
+                    composable(GameMenuRoute.CHEATS) {
+                        GameMenuCheatsScreen(gameMenuRequest.game)
                     }
                     composable(GameMenuRoute.OPTIONS) {
                         GameMenuCoreOptionsScreen(

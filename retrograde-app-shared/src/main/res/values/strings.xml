@@ -141,4 +141,89 @@
     <string name="value_handy_rot_90">90</string>
     <string name="value_handy_rot_270">270</string>
 
+    <string name="time_offset_days_m30">−30 days</string>
+    <string name="time_offset_days_m14">−14 days</string>
+    <string name="time_offset_days_m7">−7 days</string>
+    <string name="time_offset_days_m6">−6 days</string>
+    <string name="time_offset_days_m5">−5 days</string>
+    <string name="time_offset_days_m4">−4 days</string>
+    <string name="time_offset_days_m3">−3 days</string>
+    <string name="time_offset_days_m2">−2 days</string>
+    <string name="time_offset_days_m1">−1 day</string>
+    <string name="time_offset_days_p0">0 days</string>
+    <string name="time_offset_days_p1">+1 day</string>
+    <string name="time_offset_days_p2">+2 days</string>
+    <string name="time_offset_days_p3">+3 days</string>
+    <string name="time_offset_days_p4">+4 days</string>
+    <string name="time_offset_days_p5">+5 days</string>
+    <string name="time_offset_days_p6">+6 days</string>
+    <string name="time_offset_days_p7">+7 days</string>
+    <string name="time_offset_days_p14">+14 days</string>
+    <string name="time_offset_days_p30">+30 days</string>
+    <string name="setting_melonds_start_time_mode">Console clock</string>
+    <string name="value_melonds_start_time_mode_real">Device time</string>
+    <string name="value_melonds_start_time_mode_relative">Device time + offset (restart game)</string>
+    <string name="setting_melonds_start_time_day_offset">Clock offset: days</string>
+    <string name="setting_melonds_start_time_hour_offset">Clock offset: hours</string>
+    <string name="setting_melonds_start_time_minute_offset">Clock offset: minutes</string>
+    <string name="time_offset_hours_m23" translatable="false">−23 h</string>
+    <string name="time_offset_hours_m22" translatable="false">−22 h</string>
+    <string name="time_offset_hours_m21" translatable="false">−21 h</string>
+    <string name="time_offset_hours_m20" translatable="false">−20 h</string>
+    <string name="time_offset_hours_m19" translatable="false">−19 h</string>
+    <string name="time_offset_hours_m18" translatable="false">−18 h</string>
+    <string name="time_offset_hours_m17" translatable="false">−17 h</string>
+    <string name="time_offset_hours_m16" translatable="false">−16 h</string>
+    <string name="time_offset_hours_m15" translatable="false">−15 h</string>
+    <string name="time_offset_hours_m14" translatable="false">−14 h</string>
+    <string name="time_offset_hours_m13" translatable="false">−13 h</string>
+    <string name="time_offset_hours_m12" translatable="false">−12 h</string>
+    <string name="time_offset_hours_m11" translatable="false">−11 h</string>
+    <string name="time_offset_hours_m10" translatable="false">−10 h</string>
+    <string name="time_offset_hours_m9" translatable="false">−9 h</string>
+    <string name="time_offset_hours_m8" translatable="false">−8 h</string>
+    <string name="time_offset_hours_m7" translatable="false">−7 h</string>
+    <string name="time_offset_hours_m6" translatable="false">−6 h</string>
+    <string name="time_offset_hours_m5" translatable="false">−5 h</string>
+    <string name="time_offset_hours_m4" translatable="false">−4 h</string>
+    <string name="time_offset_hours_m3" translatable="false">−3 h</string>
+    <string name="time_offset_hours_m2" translatable="false">−2 h</string>
+    <string name="time_offset_hours_m1" translatable="false">−1 h</string>
+    <string name="time_offset_hours_p0" translatable="false">0 h</string>
+    <string name="time_offset_hours_p1" translatable="false">+1 h</string>
+    <string name="time_offset_hours_p2" translatable="false">+2 h</string>
+    <string name="time_offset_hours_p3" translatable="false">+3 h</string>
+    <string name="time_offset_hours_p4" translatable="false">+4 h</string>
+    <string name="time_offset_hours_p5" translatable="false">+5 h</string>
+    <string name="time_offset_hours_p6" translatable="false">+6 h</string>
+    <string name="time_offset_hours_p7" translatable="false">+7 h</string>
+    <string name="time_offset_hours_p8" translatable="false">+8 h</string>
+    <string name="time_offset_hours_p9" translatable="false">+9 h</string>
+    <string name="time_offset_hours_p10" translatable="false">+10 h</string>
+    <string name="time_offset_hours_p11" translatable="false">+11 h</string>
+    <string name="time_offset_hours_p12" translatable="false">+12 h</string>
+    <string name="time_offset_hours_p13" translatable="false">+13 h</string>
+    <string name="time_offset_hours_p14" translatable="false">+14 h</string>
+    <string name="time_offset_hours_p15" translatable="false">+15 h</string>
+    <string name="time_offset_hours_p16" translatable="false">+16 h</string>
+    <string name="time_offset_hours_p17" translatable="false">+17 h</string>
+    <string name="time_offset_hours_p18" translatable="false">+18 h</string>
+    <string name="time_offset_hours_p19" translatable="false">+19 h</string>
+    <string name="time_offset_hours_p20" translatable="false">+20 h</string>
+    <string name="time_offset_hours_p21" translatable="false">+21 h</string>
+    <string name="time_offset_hours_p22" translatable="false">+22 h</string>
+    <string name="time_offset_hours_p23" translatable="false">+23 h</string>
+    <string name="time_offset_minutes_m45" translatable="false">−45 min</string>
+    <string name="time_offset_minutes_m30" translatable="false">−30 min</string>
+    <string name="time_offset_minutes_m20" translatable="false">−20 min</string>
+    <string name="time_offset_minutes_m15" translatable="false">−15 min</string>
+    <string name="time_offset_minutes_m10" translatable="false">−10 min</string>
+    <string name="time_offset_minutes_m5" translatable="false">−5 min</string>
+    <string name="time_offset_minutes_p0" translatable="false">0 min</string>
+    <string name="time_offset_minutes_p5" translatable="false">+5 min</string>
+    <string name="time_offset_minutes_p10" translatable="false">+10 min</string>
+    <string name="time_offset_minutes_p15" translatable="false">+15 min</string>
+    <string name="time_offset_minutes_p20" translatable="false">+20 min</string>
+    <string name="time_offset_minutes_p30" translatable="false">+30 min</string>
+    <string name="time_offset_minutes_p45" translatable="false">+45 min</string>
 </resources>

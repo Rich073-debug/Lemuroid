@@ -101,7 +101,7 @@ android {
         getByName("debug") {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-DEBUG"
-            resValue("string", "lemuroid_name", "LemuroiDebug")
+            resValue("string", "lemuroid_name", "Lemuroid Mod")
         }
     }
 

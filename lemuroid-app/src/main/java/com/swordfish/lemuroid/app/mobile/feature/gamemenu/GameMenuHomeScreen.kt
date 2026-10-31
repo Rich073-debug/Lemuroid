@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Sensors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -18,10 +19,13 @@ import com.alorma.compose.settings.storage.memory.rememberMemoryIntSettingState
 import com.swordfish.lemuroid.R
 import com.swordfish.lemuroid.app.mobile.feature.gamemenu.tilt.TiltConfigurationMenuEntry
 import com.swordfish.lemuroid.app.shared.GameMenuContract
+import com.swordfish.lemuroid.app.shared.cheats.CheatsManager
 import com.swordfish.lemuroid.app.utils.android.settings.LemuroidSettingsList
 import com.swordfish.lemuroid.app.utils.android.settings.LemuroidSettingsMenuLink
 import com.swordfish.lemuroid.app.utils.android.settings.LemuroidSettingsSwitch
 import kotlin.reflect.KFunction1
+
+private val GAME_SPEEDS = listOf(1, 2, 3, 4, 5, 6, 8, 10)
 
 @Composable
 fun GameMenuHomeScreen(
@@ -95,18 +99,40 @@ fun GameMenuHomeScreen(
         )
 
         if (gameMenuRequest.fastForwardSupported) {
-            LemuroidSettingsSwitch(
-                title = { Text(text = stringResource(id = R.string.game_menu_fast_forward)) },
+            val speedIndex = GAME_SPEEDS.indexOf(gameMenuRequest.gameSpeed).coerceAtLeast(0)
+            LemuroidSettingsList(
+                title = { Text(text = stringResource(id = R.string.game_menu_game_speed)) },
+                items =
+                    GAME_SPEEDS.map {
+                        if (it == 1) {
+                            stringResource(R.string.game_menu_game_speed_normal)
+                        } else {
+                            stringResource(R.string.game_menu_game_speed_value, it)
+                        }
+                    },
                 icon = {
                     Icon(
                         painterResource(R.drawable.ic_menu_fast_forward),
-                        contentDescription = stringResource(id = R.string.game_menu_fast_forward),
+                        contentDescription = stringResource(id = R.string.game_menu_game_speed),
                     )
                 },
-                state = rememberMemoryBooleanSettingState(gameMenuRequest.fastForwardEnabled),
-                onCheckedChange = {
-                    onResult { putExtra(GameMenuContract.RESULT_ENABLE_FAST_FORWARD, it) }
+                state = rememberMemoryIntSettingState(speedIndex),
+                onItemSelected = { index, _ ->
+                    onResult { putExtra(GameMenuContract.RESULT_GAME_SPEED, GAME_SPEEDS[index]) }
                 },
+            )
+        }
+
+        if (CheatsManager.isSupported(gameMenuRequest.game.systemId)) {
+            LemuroidSettingsMenuLink(
+                title = { Text(text = stringResource(id = R.string.game_menu_cheats)) },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.Code,
+                        contentDescription = stringResource(id = R.string.game_menu_cheats),
+                    )
+                },
+                onClick = { navController.navigateToRoute(GameMenuRoute.CHEATS) },
             )
         }
 

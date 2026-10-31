@@ -7,6 +7,7 @@ import android.view.MotionEvent
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.ui.unit.Density
 import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -19,10 +20,13 @@ import com.swordfish.lemuroid.app.shared.game.viewmodel.GameViewModelSaves
 import com.swordfish.lemuroid.app.shared.game.viewmodel.GameViewModelSideEffects
 import com.swordfish.lemuroid.app.shared.game.viewmodel.GameViewModelTilt
 import com.swordfish.lemuroid.app.shared.game.viewmodel.GameViewModelTouchControls
+import com.swordfish.lemuroid.app.shared.cheats.CheatsManager
+import com.swordfish.lemuroid.app.shared.cheats.resetCheats
 import com.swordfish.lemuroid.app.shared.input.InputDeviceManager
 import com.swordfish.lemuroid.app.shared.rumble.RumbleManager
 import com.swordfish.lemuroid.app.shared.settings.ControllerConfigsManager
 import com.swordfish.lemuroid.app.shared.settings.HapticFeedbackMode
+import com.swordfish.lemuroid.common.coroutines.launchOnState
 import com.swordfish.lemuroid.common.longAnimationDuration
 import com.swordfish.lemuroid.lib.controller.ControllerConfig
 import com.swordfish.lemuroid.lib.core.CoreVariablesManager
@@ -38,7 +42,9 @@ import com.swordfish.touchinput.radial.sensors.TiltConfiguration
 import com.swordfish.touchinput.radial.settings.TouchControllerSettingsManager
 import gg.padkit.inputevents.InputEvent
 import gg.padkit.inputstate.InputState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -267,10 +273,59 @@ class BaseGameScreenViewModel(
         }
     }
 
+    private val speedPreferences = sharedPreferences
+    private val cheatsManager = CheatsManager(appContext)
+    private val currentGame = game
+
+    private fun getPreferredFastForwardSpeed(): Int {
+        return speedPreferences.getInt(PREF_KEY_FAST_FORWARD_SPEED, DEFAULT_FAST_FORWARD_SPEED)
+            .coerceIn(2, MAX_GAME_SPEED)
+    }
+
     fun toggleFastForward() {
-        Timber.d("Loading quick save")
+        Timber.d("Toggling fast forward")
         retroGameView.retroGameView?.apply {
-            frameSpeed = if (frameSpeed == 1) 2 else 1
+            frameSpeed = if (frameSpeed == 1) getPreferredFastForwardSpeed() else 1
+        }
+    }
+
+    fun setFastForwardEnabled(enabled: Boolean) {
+        retroGameView.retroGameView?.apply {
+            frameSpeed = if (enabled) getPreferredFastForwardSpeed() else 1
+        }
+    }
+
+    fun setGameSpeed(speed: Int) {
+        val safeSpeed = speed.coerceIn(1, MAX_GAME_SPEED)
+        if (safeSpeed > 1) {
+            speedPreferences.edit().putInt(PREF_KEY_FAST_FORWARD_SPEED, safeSpeed).apply()
+        }
+        retroGameView.retroGameView?.apply {
+            frameSpeed = safeSpeed
+        }
+    }
+
+    fun getGameSpeed(): Int {
+        return retroGameView.retroGameView?.frameSpeed ?: 1
+    }
+
+    private suspend fun applyCheats() {
+        if (!CheatsManager.isSupported(currentGame.systemId)) return
+        try {
+            retroGameView.waitGLEvent<GLRetroView.GLRetroEvents.FrameRendered>()
+            val view = retroGameView.retroGameViewFlow()
+            withContext(Dispatchers.IO) {
+                val cheats = cheatsManager.getCheats(currentGame)
+                view.resetCheats()
+                cheats.forEachIndexed { index, cheat ->
+                    if (CheatsManager.isValidCode(cheat.code)) {
+                        view.setCheat(index, cheat.enabled, CheatsManager.normalizeCode(cheat.code))
+                    }
+                }
+                Timber.i("Applied ${cheats.size} cheats")
+            }
+        } catch (e: Throwable) {
+            Timber.e(e, "Error while applying cheats")
         }
     }
 
@@ -279,6 +334,7 @@ class BaseGameScreenViewModel(
             try {
                 delay(appContext.longAnimationDuration().toLong())
                 retroGameView.retroGameViewFlow().reset()
+                applyCheats()
             } catch (e: Throwable) {
                 Timber.e(e, "Error in reset")
             }
@@ -314,6 +370,10 @@ class BaseGameScreenViewModel(
         owner.lifecycle.addObserver(inputs)
         owner.lifecycle.addObserver(retroGameView)
         owner.lifecycle.addObserver(touchControls)
+
+        owner.launchOnState(Lifecycle.State.RESUMED) {
+            applyCheats()
+        }
     }
 
     fun sendKeyEvent(
@@ -325,5 +385,11 @@ class BaseGameScreenViewModel(
 
     fun sendMotionEvent(event: MotionEvent): Boolean {
         return inputs.sendMotionEvent(event)
+    }
+
+    companion object {
+        const val PREF_KEY_FAST_FORWARD_SPEED = "pref_key_fast_forward_speed"
+        const val DEFAULT_FAST_FORWARD_SPEED = 2
+        const val MAX_GAME_SPEED = 10
     }
 }

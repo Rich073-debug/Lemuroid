@@ -246,4 +246,19 @@
     <string name="tilt_configuration_buttons_l1_r1">L1 - R1</string>
     <string name="tilt_configuration_buttons_l2_r2">L2 - R2</string>
 
+    <string name="game_menu_game_speed">Game speed</string>
+    <string name="game_menu_game_speed_normal">Normal (1x)</string>
+    <string name="game_menu_game_speed_value">%1$dx</string>
+    <string name="game_menu_cheats">Cheats</string>
+    <string name="cheats_description">Enter Action Replay codes (pairs of 8 hex digits). Changes are applied when you go back to the game. Some codes only work after restarting the game.</string>
+    <string name="cheats_add">Add cheat</string>
+    <string name="cheats_edit">Edit cheat</string>
+    <string name="cheats_empty">No cheats yet.</string>
+    <string name="cheats_name">Name</string>
+    <string name="cheats_code">Code</string>
+    <string name="cheats_default_name">Cheat %1$d</string>
+    <string name="cheats_invalid_code">Invalid code: use groups of 8 hex digits, e.g. 12345678 9ABCDEF0</string>
+    <string name="cheats_save">Save</string>
+    <string name="cheats_delete">Delete</string>
+    <string name="cheats_cancel">Cancel</string>
 </resources>

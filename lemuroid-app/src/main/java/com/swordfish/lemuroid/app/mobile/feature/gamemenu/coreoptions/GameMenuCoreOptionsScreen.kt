@@ -71,7 +71,9 @@ private fun CoreOptions(
                 state =
                     indexPreferenceState(
                         CoreVariablesManager.computeSharedPreferenceKey(coreOption.getKey(), systemID),
-                        coreOption.getEntriesValues().first(),
+                        coreOption.getCurrentValue()
+                            .takeIf { it in coreOption.getEntriesValues() }
+                            ?: coreOption.getEntriesValues().first(),
                         coreOption.getEntriesValues(),
                     ),
             )

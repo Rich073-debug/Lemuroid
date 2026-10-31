@@ -188,4 +188,19 @@
     <string name="tilt_configuration_buttons_l_r">L - R</string>
     <string name="tilt_configuration_buttons_l1_r1">L1 - R1</string>
     <string name="tilt_configuration_buttons_l2_r2">L2 - R2</string>
+    <string name="game_menu_game_speed">Velocità di gioco</string>
+    <string name="game_menu_game_speed_normal">Normale (1x)</string>
+    <string name="game_menu_game_speed_value">%1$dx</string>
+    <string name="game_menu_cheats">Trucchi</string>
+    <string name="cheats_description">Inserisci codici Action Replay (coppie di gruppi da 8 cifre esadecimali). Le modifiche si applicano quando torni al gioco. Alcuni codici funzionano solo dopo aver riavviato il gioco.</string>
+    <string name="cheats_add">Aggiungi trucco</string>
+    <string name="cheats_edit">Modifica trucco</string>
+    <string name="cheats_empty">Nessun trucco inserito.</string>
+    <string name="cheats_name">Nome</string>
+    <string name="cheats_code">Codice</string>
+    <string name="cheats_default_name">Trucco %1$d</string>
+    <string name="cheats_invalid_code">Codice non valido: usa gruppi da 8 cifre esadecimali, es. 12345678 9ABCDEF0</string>
+    <string name="cheats_save">Salva</string>
+    <string name="cheats_delete">Elimina</string>
+    <string name="cheats_cancel">Annulla</string>
 </resources>
