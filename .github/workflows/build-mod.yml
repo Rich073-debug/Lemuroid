@@ -28,10 +28,24 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build APK (cores included)
-        run: ./gradlew --no-daemon assembleFreeBundleDebug
+        run: |
+          ./gradlew --no-daemon assembleFreeBundleDebug
+          mkdir -p out
+          cp lemuroid-app/build/outputs/apk/freeBundle/debug/*.apk out/lemuroid-mod.apk
+
+      - name: Build second copy (link cable partner)
+        run: |
+          ./gradlew --no-daemon assembleFreeBundleDebug -PmodCopy=2
+          cp lemuroid-app/build/outputs/apk/freeBundle/debug/*.apk out/lemuroid-mod-2.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: lemuroid-mod-apk
-          path: lemuroid-app/build/outputs/apk/freeBundle/debug/*.apk
+          path: out/lemuroid-mod.apk
+
+      - name: Upload second copy
+        uses: actions/upload-artifact@v4
+        with:
+          name: lemuroid-mod-2-apk
+          path: out/lemuroid-mod-2.apk

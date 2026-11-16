@@ -226,4 +226,8 @@
     <string name="time_offset_minutes_p20" translatable="false">+20 min</string>
     <string name="time_offset_minutes_p30" translatable="false">+30 min</string>
     <string name="time_offset_minutes_p45" translatable="false">+45 min</string>
+    <string name="setting_gambatte_gb_link_mode">Link cable (same phone)</string>
+    <string name="value_gambatte_gb_link_mode_off">Not connected</string>
+    <string name="value_gambatte_gb_link_mode_server">Player 1 (host)</string>
+    <string name="value_gambatte_gb_link_mode_client">Player 2 (joins)</string>
 </resources>

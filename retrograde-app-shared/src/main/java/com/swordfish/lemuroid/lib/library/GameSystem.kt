@@ -454,6 +454,24 @@ data class GameSystem(
                             exposedSettings =
                                 listOf(
                                     ExposedSetting(
+                                        "gambatte_gb_link_mode",
+                                        R.string.setting_gambatte_gb_link_mode,
+                                        arrayListOf(
+                                            ExposedSetting.Value(
+                                                "Not Connected",
+                                                R.string.value_gambatte_gb_link_mode_off,
+                                            ),
+                                            ExposedSetting.Value(
+                                                "Network Server",
+                                                R.string.value_gambatte_gb_link_mode_server,
+                                            ),
+                                            ExposedSetting.Value(
+                                                "Network Client",
+                                                R.string.value_gambatte_gb_link_mode_client,
+                                            ),
+                                        ),
+                                    ),
+                                    ExposedSetting(
                                         "gambatte_gb_colorization",
                                         R.string.setting_gambatte_gb_colorization,
                                     ),
@@ -490,6 +508,19 @@ data class GameSystem(
                                 ),
                             defaultSettings =
                                 listOf(
+                                    CoreVariable("gambatte_gb_link_network_server_ip_1", "1"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_2", "2"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_3", "7"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_4", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_5", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_6", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_7", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_8", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_9", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_10", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_11", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_12", "1"),
+                                    CoreVariable("gambatte_gb_link_network_port", "56400"),
                                     CoreVariable("gambatte_gb_colorization", "internal"),
                                     CoreVariable("gambatte_gb_internal_palette", "GB - Pocket"),
                                 ),
@@ -511,6 +542,24 @@ data class GameSystem(
                             CoreID.GAMBATTE,
                             exposedSettings =
                                 listOf(
+                                    ExposedSetting(
+                                        "gambatte_gb_link_mode",
+                                        R.string.setting_gambatte_gb_link_mode,
+                                        arrayListOf(
+                                            ExposedSetting.Value(
+                                                "Not Connected",
+                                                R.string.value_gambatte_gb_link_mode_off,
+                                            ),
+                                            ExposedSetting.Value(
+                                                "Network Server",
+                                                R.string.value_gambatte_gb_link_mode_server,
+                                            ),
+                                            ExposedSetting.Value(
+                                                "Network Client",
+                                                R.string.value_gambatte_gb_link_mode_client,
+                                            ),
+                                        ),
+                                    ),
                                     ExposedSetting(
                                         "gambatte_mix_frames",
                                         R.string.setting_gambatte_mix_frames,
@@ -555,6 +604,19 @@ data class GameSystem(
                             rumbleSupported = true,
                             defaultSettings =
                                 listOf(
+                                    CoreVariable("gambatte_gb_link_network_server_ip_1", "1"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_2", "2"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_3", "7"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_4", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_5", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_6", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_7", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_8", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_9", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_10", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_11", "0"),
+                                    CoreVariable("gambatte_gb_link_network_server_ip_12", "1"),
+                                    CoreVariable("gambatte_gb_link_network_port", "56400"),
                                     CoreVariable("gambatte_gbc_color_correction", "disabled"),
                                 ),
                             controllerConfigs =

@@ -143,4 +143,8 @@
     <string name="setting_melonds_start_time_day_offset">Sposta orologio: giorni</string>
     <string name="setting_melonds_start_time_hour_offset">Sposta orologio: ore</string>
     <string name="setting_melonds_start_time_minute_offset">Sposta orologio: minuti</string>
+    <string name="setting_gambatte_gb_link_mode">Cavo link (stesso telefono)</string>
+    <string name="value_gambatte_gb_link_mode_off">Non collegato</string>
+    <string name="value_gambatte_gb_link_mode_server">Giocatore 1 (ospita)</string>
+    <string name="value_gambatte_gb_link_mode_client">Giocatore 2 (si collega)</string>
 </resources>

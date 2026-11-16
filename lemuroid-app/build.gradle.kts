@@ -99,9 +99,11 @@ android {
             resValue("string", "lemuroid_name", "Lemuroid")
         }
         getByName("debug") {
-            applicationIdSuffix = ".debug"
+            // -PmodCopy=2 builds a second, independent copy of the app (used as link cable partner)
+            val modCopy = (project.findProperty("modCopy") as String?).orEmpty()
+            applicationIdSuffix = ".debug$modCopy"
             versionNameSuffix = "-DEBUG"
-            resValue("string", "lemuroid_name", "Lemuroid Mod")
+            resValue("string", "lemuroid_name", if (modCopy.isEmpty()) "Lemuroid Mod" else "Lemuroid Mod $modCopy")
         }
     }
 
