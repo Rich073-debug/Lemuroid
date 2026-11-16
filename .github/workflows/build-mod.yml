@@ -6,6 +6,9 @@ on:
       - mod-cheat-speed-time
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build APK
@@ -49,3 +52,17 @@ jobs:
         with:
           name: lemuroid-mod-2-apk
           path: out/lemuroid-mod-2.apk
+
+      - name: Publish APKs as a release (direct download links)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if gh release view mod-latest >/dev/null 2>&1; then
+            gh release upload mod-latest out/lemuroid-mod.apk out/lemuroid-mod-2.apk --clobber
+          else
+            gh release create mod-latest out/lemuroid-mod.apk out/lemuroid-mod-2.apk \
+              --target "$GITHUB_SHA" \
+              --title "Lemuroid Mod" \
+              --notes "Unofficial personal build of Lemuroid with DS cheats, selectable game speed, console clock offset and Game Boy link cable. Not affiliated with the Lemuroid project."
+          fi
